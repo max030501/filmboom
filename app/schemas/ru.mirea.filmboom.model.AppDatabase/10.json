@@ -1,0 +1,328 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 10,
+    "identityHash": "ebbfdf980d4ea27c5c44300724f66319",
+    "entities": [
+      {
+        "tableName": "Film",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT, `rating` REAL NOT NULL, `genre` TEXT, `description` TEXT, `image` INTEGER NOT NULL, `isFavourite` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "rating",
+            "columnName": "rating",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "genre",
+            "columnName": "genre",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "description",
+            "columnName": "description",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "image",
+            "columnName": "image",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isFavourite",
+            "columnName": "isFavourite",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "Hall",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idHall` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `numberHall` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "idHall",
+            "columnName": "idHall",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "numberHall",
+            "columnName": "numberHall",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "idHall"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "Seat",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idSeat` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `numberSeat` INTEGER NOT NULL, `idHall` INTEGER NOT NULL, `idTicket` INTEGER NOT NULL, FOREIGN KEY(`idHall`) REFERENCES `Hall`(`idHall`) ON UPDATE CASCADE ON DELETE CASCADE , FOREIGN KEY(`idTicket`) REFERENCES `Ticket`(`idTicket`) ON UPDATE CASCADE ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "idSeat",
+            "columnName": "idSeat",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "numberSeat",
+            "columnName": "numberSeat",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "idHall",
+            "columnName": "idHall",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "idTicket",
+            "columnName": "idTicket",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "idSeat"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_Seat_idHall",
+            "unique": false,
+            "columnNames": [
+              "idHall"
+            ],
+            "createSql": "CREATE  INDEX `index_Seat_idHall` ON `${TABLE_NAME}` (`idHall`)"
+          },
+          {
+            "name": "index_Seat_idTicket",
+            "unique": false,
+            "columnNames": [
+              "idTicket"
+            ],
+            "createSql": "CREATE  INDEX `index_Seat_idTicket` ON `${TABLE_NAME}` (`idTicket`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "Hall",
+            "onDelete": "CASCADE",
+            "onUpdate": "CASCADE",
+            "columns": [
+              "idHall"
+            ],
+            "referencedColumns": [
+              "idHall"
+            ]
+          },
+          {
+            "table": "Ticket",
+            "onDelete": "CASCADE",
+            "onUpdate": "CASCADE",
+            "columns": [
+              "idTicket"
+            ],
+            "referencedColumns": [
+              "idTicket"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "Session",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idSession` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `date` INTEGER NOT NULL, `idFilm` INTEGER NOT NULL, `price` REAL NOT NULL, `idHall` INTEGER NOT NULL, FOREIGN KEY(`idFilm`) REFERENCES `Film`(`id`) ON UPDATE CASCADE ON DELETE CASCADE , FOREIGN KEY(`idHall`) REFERENCES `Hall`(`idHall`) ON UPDATE CASCADE ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "idSession",
+            "columnName": "idSession",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "date",
+            "columnName": "date",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "idFilm",
+            "columnName": "idFilm",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "price",
+            "columnName": "price",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "idHall",
+            "columnName": "idHall",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "idSession"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_Session_idFilm",
+            "unique": false,
+            "columnNames": [
+              "idFilm"
+            ],
+            "createSql": "CREATE  INDEX `index_Session_idFilm` ON `${TABLE_NAME}` (`idFilm`)"
+          },
+          {
+            "name": "index_Session_idHall",
+            "unique": false,
+            "columnNames": [
+              "idHall"
+            ],
+            "createSql": "CREATE  INDEX `index_Session_idHall` ON `${TABLE_NAME}` (`idHall`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "Film",
+            "onDelete": "CASCADE",
+            "onUpdate": "CASCADE",
+            "columns": [
+              "idFilm"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          },
+          {
+            "table": "Hall",
+            "onDelete": "CASCADE",
+            "onUpdate": "CASCADE",
+            "columns": [
+              "idHall"
+            ],
+            "referencedColumns": [
+              "idHall"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "Ticket",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idTicket` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `idSession` INTEGER NOT NULL, `seats` TEXT, `name` TEXT, `time` INTEGER NOT NULL, `hall` INTEGER NOT NULL, FOREIGN KEY(`idSession`) REFERENCES `Session`(`idSession`) ON UPDATE CASCADE ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "idTicket",
+            "columnName": "idTicket",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "idSession",
+            "columnName": "idSession",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "seats",
+            "columnName": "seats",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "time",
+            "columnName": "time",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "hall",
+            "columnName": "hall",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "idTicket"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_Ticket_idSession",
+            "unique": false,
+            "columnNames": [
+              "idSession"
+            ],
+            "createSql": "CREATE  INDEX `index_Ticket_idSession` ON `${TABLE_NAME}` (`idSession`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "Session",
+            "onDelete": "CASCADE",
+            "onUpdate": "CASCADE",
+            "columns": [
+              "idSession"
+            ],
+            "referencedColumns": [
+              "idSession"
+            ]
+          }
+        ]
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"ebbfdf980d4ea27c5c44300724f66319\")"
+    ]
+  }
+}

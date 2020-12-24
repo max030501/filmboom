@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">FilmBoom</string>
+    <string name="screen">Экран</string>
+    <string name="chose">Выбраны</string>
+    <string name="available">Доступны</string>
+    <string name="sold">Проданы</string>
+    <string name="buy">Купить</string>
+    <string name="available_sessions">Доступные сеансы:</string>
+    <string name="scan_at_entrance">Отсканируйте на входе</string>
+    <string name="seats">Места</string>
+    <string name="tickets">Билеты</string>
+    <string name="favourites">Избранное</string>
+    <string name="bought">Купленное</string>
+    <string name="qr">QR-код</string>
+    <string name="empty_favourite">Список избранных фильмов пуст</string>
+    <string name="empty_ticket">Список билетов пуст</string>
+    <string name="sum_ticket">Сумма:\n0 руб.</string>
+</resources>

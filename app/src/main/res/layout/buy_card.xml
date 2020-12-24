@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="8px"
+    android:layout_marginRight="8px"
+    android:layout_marginTop="8px"
+    android:layout_marginBottom="8px"
+    >
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        >
+
+        <TextView
+            android:id="@+id/filmName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:text=""
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Display1"
+            android:textColor="@color/black"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/filmTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/filmName"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="35dp"
+            android:layout_marginEnd="25dp"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            />
+        <ImageView
+            android:id="@+id/delete_ticket"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_close"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="15dp"
+            />
+<!--        <ImageView-->
+<!--            android:id="@+id/clock_img"-->
+<!--            android:layout_width="40dp"-->
+<!--            android:layout_height="40dp"-->
+<!--            android:layout_marginStart="265dp"-->
+<!--            android:layout_marginLeft="265dp"-->
+<!--            android:layout_below="@id/film_title_text"-->
+<!--            android:src="@drawable/ic_access_time_black_24dp" />-->
+
+        <Button
+            android:id="@+id/detail_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/hall"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="20dp"
+            android:background="@android:color/transparent"
+            android:text="@string/qr"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            />
+
+
+
+        <TextView
+            android:id="@+id/hall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/filmName"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:text="" />
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
